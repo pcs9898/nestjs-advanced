@@ -42,7 +42,8 @@ api마다 예외처리 경우의수, ai로 전부다 묻고 전부다 커버하�
 
 # Mail Module
 
-- [x] MailService-send
+- [x] MailService-sendUserServiceAuthCode
+- [x] MailService-sendAnalyticsServiceFindTop5downloadVideos
 - [x] testCode
 
 # Schedule-batch Module
@@ -66,5 +67,5 @@ api마다 예외처리 경우의수, ai로 전부다 묻고 전부다 커버하�
 
 # Analytics Module
 
-- [] feature16/findTop5Download
-- [] testCode
+- [x] feature16/findTop5Download
+- [x] testCode

@@ -4,13 +4,13 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 
 describe('MailService', () => {
-  let service: MailService;
+  let mailService: MailService;
   let mockMailerService: any;
   let mockConfigService: any;
 
   beforeEach(async () => {
     mockMailerService = {
-      sendUserServiceAuthCode: jest.fn(),
+      sendMail: jest.fn(),
     };
     mockConfigService = {
       get: jest.fn(),
@@ -24,11 +24,11 @@ describe('MailService', () => {
       ],
     }).compile();
 
-    service = module.get<MailService>(MailService);
+    mailService = module.get<MailService>(MailService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(mailService).toBeDefined();
   });
 
   it('should send email', async () => {
@@ -39,7 +39,7 @@ describe('MailService', () => {
     mockMailerService.sendMail.mockResolvedValue(true);
     mockConfigService.get.mockReturnValue('sender@example.com');
 
-    await service.sendUserServiceAuthCode({ authCode, email });
+    await mailService.sendUserServiceAuthCode({ authCode, email });
 
     expect(mockMailerService.sendMail).toHaveBeenCalledWith({
       to: email,
@@ -59,7 +59,7 @@ describe('MailService', () => {
     mockConfigService.get.mockReturnValue('sender@example.com');
 
     await expect(
-      service.sendUserServiceAuthCode({ authCode, email }),
+      mailService.sendUserServiceAuthCode({ authCode, email }),
     ).rejects.toThrow('Failed to send email');
   });
 });
