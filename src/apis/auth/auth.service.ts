@@ -81,7 +81,10 @@ export class AuthService {
 
       const unVerifiedToken = this.generateUnVerifiedToken(userEntity.id);
 
-      await this.mailService.send({ email: userEntity.email, authCode });
+      await this.mailService.sendUserServiceAuthCode({
+        email: userEntity.email,
+        authCode,
+      });
 
       await queryRunner.commitTransaction();
 
@@ -120,7 +123,10 @@ export class AuthService {
 
         const unVerifiedToken = this.generateUnVerifiedToken(user.id);
 
-        await this.mailService.send({ email: user.email, authCode });
+        await this.mailService.sendUserServiceAuthCode({
+          email: user.email,
+          authCode,
+        });
 
         await queryRunner.commitTransaction();
 
@@ -251,7 +257,7 @@ export class AuthService {
 
       await this.userAuthRepository.update({ user }, { authCode });
 
-      await this.mailService.send({
+      await this.mailService.sendUserServiceAuthCode({
         email: user.email,
         authCode,
       });

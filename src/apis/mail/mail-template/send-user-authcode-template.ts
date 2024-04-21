@@ -1,9 +1,9 @@
-import { IMailServiceWelcomeTemplate } from '../interface/mail-service.interface';
+import { IMailServiceSendUserServiceAuthCodeTemplate } from '../interface/mail-service.interface';
 
-export const welcome_send_mail_template = ({
+export const sendUserServiceAuthCodeTemplate = ({
   username,
   authCode,
-}: IMailServiceWelcomeTemplate) => {
+}: IMailServiceSendUserServiceAuthCodeTemplate) => {
   return `    
     <!DOCTYPE html>
     <html>

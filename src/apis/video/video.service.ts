@@ -134,7 +134,7 @@ export class VideoService {
     return { stream, mimetype, size };
   }
 
-  async findTop5Download() {
+  async findTop5DownloadVideos() {
     const videos = await this.videoRepository.find({
       relations: ['user'],
       order: {

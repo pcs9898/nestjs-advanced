@@ -1,14 +1,13 @@
-export interface IMailServiceSend {
+export interface IMailServiceSendUserServiceAuthCode {
   email: string;
   authCode: number;
 }
 
-export interface IMailServiceWelcomeTemplate {
+export interface IMailServiceSendUserServiceAuthCodeTemplate {
   username: string;
   authCode: number;
 }
 
-export interface IMailServiceGetEmailData {
-  authCode: number;
-  username: string;
+export interface IMailServiceSendAnalyticsServiceFindTop5downloadVideosTemplate {
+  data: string[];
 }

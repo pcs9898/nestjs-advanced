@@ -11,5 +11,6 @@ import { MulterExceptionFilter } from './filter/multer-exception.filter';
   imports: [TypeOrmModule.forFeature([Video, User]), UserModule],
   controllers: [VideoController],
   providers: [VideoService, MulterExceptionFilter],
+  exports: [VideoService],
 })
 export class VideoModule {}

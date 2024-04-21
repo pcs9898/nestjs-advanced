@@ -24,6 +24,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import slackConfig from './common/config/slack.config';
 import sentryConfig from './common/config/sentry.config';
 import { ScheduledBatchModule } from './apis/scheduled-batch/scheduled-batch.module';
+import { AnalyticsModule } from './apis/analytics/analytics.module';
 
 @Module({
   imports: [
@@ -91,6 +92,7 @@ import { ScheduledBatchModule } from './apis/scheduled-batch/scheduled-batch.mod
     JwtModule,
     ScheduledBatchModule,
     HealthModule,
+    AnalyticsModule,
   ],
   providers: [
     {

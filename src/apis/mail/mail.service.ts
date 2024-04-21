@@ -1,11 +1,11 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import {
-  IMailServiceGetEmailData,
-  IMailServiceSend,
-} from './interface/mail-service.interface';
-import { welcome_send_mail_template } from './mail-template/welcome_template';
+import { IMailServiceSendUserServiceAuthCode } from './interface/mail-service.interface';
+
 import { ConfigService } from '@nestjs/config';
+import { Video } from '../video/entity/video.entity';
+import { sendUserServiceAuthCodeTemplate } from './mail-template/send-user-authcode-template';
+import { sendAnalyticsServiceFindTop5downloadVideosTemplate } from './mail-template/find-top5-download-videos-template';
 
 @Injectable()
 export class MailService {
@@ -14,11 +14,17 @@ export class MailService {
     private readonly configService: ConfigService,
   ) {}
 
-  async send({ authCode, email }: IMailServiceSend): Promise<void> {
+  async sendUserServiceAuthCode({
+    authCode,
+    email,
+  }: IMailServiceSendUserServiceAuthCode): Promise<void> {
     const username = email.split('@')[0];
-    const mailHtmlData = this.getEmailData({ authCode, username });
+    const mailHtmlData = sendUserServiceAuthCodeTemplate({
+      username,
+      authCode,
+    });
 
-    this.mailerService
+    await this.mailerService
       .sendMail({
         to: email,
         from: this.configService.get('mail.senderEmail'),
@@ -31,7 +37,25 @@ export class MailService {
       });
   }
 
-  private getEmailData = ({ authCode, username }: IMailServiceGetEmailData) => {
-    return welcome_send_mail_template({ username, authCode });
-  };
+  async sendAnalyticsServiceFindTop5downloadVideos(videos: Video[]) {
+    const data = videos.map(
+      ({ id, title, download_cnt }) =>
+        `<tr><td>${id}</td><td>${title}</td><td>${download_cnt}</td></tr>`,
+    );
+    const mailHtmlData = sendAnalyticsServiceFindTop5downloadVideosTemplate({
+      data,
+    });
+
+    await this.mailerService
+      .sendMail({
+        to: this.configService.get('mail.senderEmail'),
+        from: 'nesttube@nesttube.com',
+        subject: 'Top 5 Downloaded Videos by Nest Tube',
+        html: mailHtmlData,
+      })
+      .then(() => {})
+      .catch((e) => {
+        throw new InternalServerErrorException(e.message);
+      });
+  }
 }

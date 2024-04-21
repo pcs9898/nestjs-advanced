@@ -10,7 +10,7 @@ describe('MailService', () => {
 
   beforeEach(async () => {
     mockMailerService = {
-      sendMail: jest.fn(),
+      sendUserServiceAuthCode: jest.fn(),
     };
     mockConfigService = {
       get: jest.fn(),
@@ -39,7 +39,7 @@ describe('MailService', () => {
     mockMailerService.sendMail.mockResolvedValue(true);
     mockConfigService.get.mockReturnValue('sender@example.com');
 
-    await service.send({ authCode, email });
+    await service.sendUserServiceAuthCode({ authCode, email });
 
     expect(mockMailerService.sendMail).toHaveBeenCalledWith({
       to: email,
@@ -58,8 +58,8 @@ describe('MailService', () => {
     );
     mockConfigService.get.mockReturnValue('sender@example.com');
 
-    await expect(service.send({ authCode, email })).rejects.toThrow(
-      'Failed to send email',
-    );
+    await expect(
+      service.sendUserServiceAuthCode({ authCode, email }),
+    ).rejects.toThrow('Failed to send email');
   });
 });
