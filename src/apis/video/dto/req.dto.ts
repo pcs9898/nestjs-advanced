@@ -17,3 +17,5 @@ export class FindVideoReqDto {
   @IsUUID()
   id: string;
 }
+
+export class DownloadVideoReqDto extends FindVideoReqDto {}

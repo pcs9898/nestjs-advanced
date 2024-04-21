@@ -32,6 +32,7 @@ export class UserService {
       skip: (page - 1) * size,
       take: size,
     });
+
     return users;
   }
 

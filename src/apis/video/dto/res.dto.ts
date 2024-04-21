@@ -13,9 +13,9 @@ export class CreateVideoResDto {
   }
 }
 
-export class VideoUserDto {
+export class FindVideoUserDto {
   @ApiProperty({ required: true })
-  id: string;
+  user_id: string;
 
   @ApiProperty({ required: true })
   email: string;
@@ -29,7 +29,7 @@ export class FindVideoResDto {
   title: string;
 
   @ApiProperty({ required: true })
-  user: VideoUserDto;
+  user: FindVideoUserDto;
 
   static toDto({ id, title, user: { id: user_id, email } }: Video) {
     return { id, title, user: { user_id, email } };
