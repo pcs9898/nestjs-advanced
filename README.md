@@ -1,28 +1,14 @@
-다 끝나면 cqrs패턴도입 비디오에~~
-config applying,
-db migration, seeding,
-datasoure,
-custom decorator,
-custom provider,
-custom intercepter,
-sentry+notion(err notification),
-brutal force(rate limit),
-healthCheck,
-error sentry+slack notification,
-===========여기까지 완료==============
+nestjs-advanced completion
 
-여기서 부터 시작하면 됨
-cqrs,
-db index,
-scheduling,
+crud, upload, download
 
-이거 전부다 적용하기
+db postgres, redis, migration, seed, index
 
-//video api 작성하기, 끝나면 custom provider, custom interceptor 하나씩 적용해보기
+config service, custom decorator, custom filter, custom guard, custom interceptor, custom middleware
 
-api 작성후 swagger가서 test할게 아니라 testcode로 단위테스트하기!! 시간 훨씬 절약!!
+mailing(auth code, analytics), notification with sentry, slack
 
-api마다 예외처리 경우의수, ai로 전부다 묻고 전부다 커버하고 이걸 테스트코드로 테스트하기
+rate limit (throttle), health check, scheduling(batch, analytics)
 
 # Auth Module
 

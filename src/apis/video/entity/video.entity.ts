@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -14,6 +15,7 @@ export class Video {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Index()
   @Column()
   title: string;
 
