@@ -32,6 +32,7 @@ describe('MailService', () => {
   });
 
   it('should send email', async () => {
+    // give
     const authCode = 123456;
     const email = 'test@example.com';
     const username = email.split('@')[0];
@@ -39,8 +40,10 @@ describe('MailService', () => {
     mockMailerService.sendMail.mockResolvedValue(true);
     mockConfigService.get.mockReturnValue('sender@example.com');
 
+    // when
     await mailService.sendUserServiceAuthCode({ authCode, email });
 
+    // then
     expect(mockMailerService.sendMail).toHaveBeenCalledWith({
       to: email,
       from: 'sender@example.com',
@@ -50,6 +53,7 @@ describe('MailService', () => {
   });
 
   it('should throw an error when email sending fails', async () => {
+    // give
     const authCode = 123456;
     const email = 'test@example.com';
 
@@ -58,6 +62,7 @@ describe('MailService', () => {
     );
     mockConfigService.get.mockReturnValue('sender@example.com');
 
+    // then
     await expect(
       mailService.sendUserServiceAuthCode({ authCode, email }),
     ).rejects.toThrow('Failed to send email');
