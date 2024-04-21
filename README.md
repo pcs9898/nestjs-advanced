@@ -10,6 +10,8 @@ mailing(auth code, analytics), notification with sentry, slack
 
 rate limit (throttle), health check, scheduling(batch, analytics)
 
+unit test
+
 # Auth Module
 
 - [x] feature1/signup
